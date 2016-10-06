@@ -1,0 +1,7 @@
+{
+	"error":{
+		"NOT_EXISTS_ACCOUNT":"소셜네트워크 계정명이 존재하지 않습니다.",
+		"REQUIRED_FACEBOOK_TOKEN":"페이스북 계정에서 게시물을 가져오기 위해서는 아래의 값이 필요합니다.",
+		"REQUIRED_TWITTER_TOKEN":"트위터 계정에서 게시물을 가져오기 위해서는 아래의 값이 필요합니다."
+	}
+}

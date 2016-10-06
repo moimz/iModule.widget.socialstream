@@ -1,0 +1,1 @@
+<div data-role="loading"><i class="mi mi-loading"></i></div>

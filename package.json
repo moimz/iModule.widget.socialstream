@@ -1,0 +1,124 @@
+{
+	"title":{
+		"ko":"소셜스트림"
+	},
+	"version":"3.0.0",
+	"description":{
+		"ko":"페이스북, 트위터에서 최근게시물을 가져옵니다."
+	},
+	"author":{
+		"name":"Arzz",
+		"email":"arzz@arzz.com"
+	},
+	"homepage":"https://www.imodule.kr",
+	"dependencies":{
+		"core":"3.0.0"
+	},
+	"language":"ko",
+	"configs":{
+		"facebook":{
+			"title":{
+				"ko":"페이스북 ID"
+			},
+			"help":{
+				"ko":"여러계정에서 게시물을 가져오려면 콤마(,)로 구분하여 입력하세요."
+			},
+			"type":"string",
+			"default":"",
+			"is_required":false
+		},
+		"twitter":{
+			"title":{
+				"ko":"트위터 ID"
+			},
+			"help":{
+				"ko":"여러계정에서 게시물을 가져오려면 콤마(,)로 구분하여 입력하세요."
+			},
+			"type":"string",
+			"default":"",
+			"is_required":false
+		},
+		"facebook_app_id":{
+			"title":{
+				"ko":"페이스북 APP_ID"
+			},
+			"help":{
+				"ko":"페이스북 개발자센터에서 APP 을 생성한뒤 APP_ID 값을 입력하세요."
+			},
+			"type":"string",
+			"default":"",
+			"is_required":false
+		},
+		"facebook_app_secret":{
+			"title":{
+				"ko":"페이스북 APP_SECRET"
+			},
+			"help":{
+				"ko":"페이스북 개발자센터에서 APP 을 생성한뒤 APP_SECRET 값을 입력하세요."
+			},
+			"type":"string",
+			"default":"",
+			"is_required":false
+		},
+		"twitter_consumer_key":{
+			"title":{
+				"ko":"트위터 CONSUMER_KEY"
+			},
+			"help":{
+				"ko":"트위터 개발자센터에서 APP 을 생성한뒤 CONSUMER_KEY 값을 입력하세요."
+			},
+			"type":"string",
+			"default":"",
+			"is_required":false
+		},
+		"twitter_consumer_secret":{
+			"title":{
+				"ko":"트위터 CONSUMER_SECRET"
+			},
+			"help":{
+				"ko":"트위터 개발자센터에서 APP 을 생성한뒤 CONSUMER_SECRET 값을 입력하세요."
+			},
+			"type":"string",
+			"default":"",
+			"is_required":false
+		},
+		"twitter_access_token":{
+			"title":{
+				"ko":"트위터 ACCESS_TOKEN"
+			},
+			"help":{
+				"ko":"트위터 개발자센터에서 APP 을 생성한뒤 ACCESS_TOKEN 값을 입력하세요."
+			},
+			"type":"string",
+			"default":"",
+			"is_required":false
+		},
+		"twitter_access_token_secret":{
+			"title":{
+				"ko":"트위터 ACCESS_TOKEN_SECRET"
+			},
+			"help":{
+				"ko":"트위터 개발자센터에서 APP 을 생성한뒤 ACCESS_TOKEN_SECRET 값을 입력하세요."
+			},
+			"type":"string",
+			"default":"",
+			"is_required":false
+		},
+		"count":{
+			"title":{
+				"ko":"가져올 갯수"
+			},
+			"type":"int",
+			"default":"12",
+			"is_required":true
+		},
+		"cache":{
+			"title":{
+				"ko":"캐시유지시간(초)"
+			},
+			"type":"int",
+			"default":"1800",
+			"is_required":false
+		}
+	}
+}
