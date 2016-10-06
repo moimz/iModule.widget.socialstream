@@ -146,7 +146,7 @@ function GetSocailStreamTwitter($id) {
 	return $result;
 }
 
-if (true || $me->checkCache() < time() - $cache) {
+if ($me->checkCache() < time() - $cache) {
 	$rawLists = array();
 	for ($i=0, $loop=count($accounts);$i<$loop;$i++) {
 		$temp = explode('-',$accounts[$i]);
