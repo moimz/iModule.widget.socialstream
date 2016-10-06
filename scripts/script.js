@@ -14,14 +14,11 @@ $(document).ready(function() {
 		 */
 		var $me = $("script[src*='/widgets/socialstream/scripts/script.js']");
 		var url = $me.attr("src").split("/scripts/script.js").shift();
-		console.log(url);
 		
 		/**
 		 * 소셜스트림 객체를 찾는다.
 		 */
 		$("div[data-widget=socialstream] > div[id]").each(function() {
-			console.log($(this));
-			
 			var $parent = $(this);
 			$.send(url+"/process/index.php",{
 				accounts:$(this).attr("data-accounts"),
@@ -42,6 +39,7 @@ $(document).ready(function() {
 						if (data.image) {
 							$image.append($("<img>").attr("src",data.image));
 							$image.css("backgroundImage","url("+data.image+")");
+							$image.css("backgroundSize","cover");
 						}
 						$box.append($image);
 						
