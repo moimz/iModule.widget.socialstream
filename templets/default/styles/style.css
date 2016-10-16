@@ -1,5 +1,5 @@
 div[data-widget=socialstream][data-templet=default] {margin:-15px 0px 0px -15px;}
-div[data-widget=socialstream][data-templet=default] div[data-role=loading] {text-align:center; font-size:32px; height:150px; line-height:150px; color:#666;}
+div[data-widget=socialstream][data-templet=default] div[data-role=loading] {text-align:center; padding-top:15px; font-size:32px; height:150px; line-height:150px; color:#666;}
 div[data-widget=socialstream][data-templet=default] div.item {width:25%; margin:15px 0px 0px 0px; box-sizing:border-box; padding:0px 0px 0px 15px;}
 div[data-widget=socialstream][data-templet=default] div.item a {color:#2f8ec2; text-decoration:none;}
 div[data-widget=socialstream][data-templet=default] div.item > div.box {background:#fff; box-shadow:rgba(0,0,0,0.1) 1px 1px 2px 0px; overflow:hidden;}
