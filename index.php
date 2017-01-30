@@ -13,7 +13,7 @@ if (defined('__IM__') == false) exit;
 $IM->addHeadResource('script',$Widget->getDir().'/scripts/imagesloaded.min.js');
 $IM->addHeadResource('script',$Widget->getDir().'/scripts/isotope.min.js');
 $IM->addHeadResource('script',$Widget->getDir().'/scripts/script.js');
-
+$IM->loadWebFont('FontAwesome');
 
 $count = $Widget->getValue('count');
 $cache = $Widget->getValue('cache');

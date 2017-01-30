@@ -59,13 +59,13 @@ $(document).ready(function() {
 						$detail.append($("<span>").attr("data-time",data.time).addClass("time"));
 						
 						if (data.type == "facebook") {
-							$detail.append($("<span>").addClass("count").html(data.likes+" like"+(data.likes > 1 ? "s" : "")));
-							$detail.append($("<span>").addClass("count").html(data.comments+" comment"+(data.comments > 1 ? "s" : "")));
+							$detail.append($("<span>").addClass("count").html('<i class="fa fa-thumbs-o-up"></i> '+data.likes));
+							$detail.append($("<span>").addClass("count").html('<i class="fa fa-comment-o"></i> '+data.comments));
 						}
 						
 						if (data.type == "twitter") {
-							$detail.append($("<span>").addClass("count").html(data.retweets+" retweet"+(data.likes > 1 ? "s" : "")));
-							$detail.append($("<span>").addClass("count").html(data.favorites+" favorite"+(data.favorites > 1 ? "s" : "")));
+							$detail.append($("<span>").addClass("count").html('<i class="fa fa-retweet"></i> '+data.retweets));
+							$detail.append($("<span>").addClass("count").html('<i class="fa fa-heart-o"></i> '+data.favorites));
 						}
 						
 						$account.append($("<div>").addClass("detail").append($detail));
