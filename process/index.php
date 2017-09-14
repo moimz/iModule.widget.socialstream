@@ -41,7 +41,7 @@ function GetSocailStreamFacebook($id) {
 	
 	if ($facebook === false) return null;
 	
-	$fields = "id,message,picture,link,name,description,created_time,from,object_id,likes.summary(true),comments.summary(true),attachments{media{image}}";
+	$fields = "id,message,picture,link,name,description,created_time,from,object_id,likes.summary(true),comments.summary(true),attachments";
 	
 	$ch = curl_init();
 	curl_setopt($ch,CURLOPT_URL,'https://graph.facebook.com/v2.8/'.$id.'/posts?access_token='.$facebook.'&fields='.$fields.'&limit='.$count);
@@ -81,6 +81,15 @@ function GetSocailStreamFacebook($id) {
 					if (isset($attachment->media) == true && isset($attachment->media->image) == true) {
 						$item->image = $attachment->media->image->src;
 						break;
+					}
+					
+					if (isset($attachment->subattachments) == true && count($attachment->subattachments->data) > 0) {
+						foreach ($attachment->subattachments->data as $subattachment) {
+							if (isset($subattachment->media) == true && isset($subattachment->media->image) == true) {
+								$item->image = $subattachment->media->image->src;
+								break;
+							}
+						}
 					}
 				}
 			}
