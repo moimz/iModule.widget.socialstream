@@ -1,19 +1,20 @@
 <?php
 /**
- * 이 파일은 소셜스트림 위젯의 일부입니다. (https://www.imodule.kr)
+ * 이 파일은 소셜스트림 위젯의 일부입니다. (https://www.imodules.io)
  * 
  * 소셜네트워크 API 를 이용하여 최근 게시물을 가져온다.
  * iModule 규칙에 맞지 않는 파일위치이므로 직접 init.config.php 을 호출하여 iModule 코어클래스를 정의한다.
  *
- * @file /widgets/socialstream/index.php
+ * @file /widgets/socialstream/process/index.php
  * @author Arzz (arzz@arzz.com)
- * @license GPLv3
- * @version 3.0.0.161001
+ * @license MIT License
+ * @version 3.0.0
+ * @modified 2018. 10. 15.
  */
-
 REQUIRE_ONCE '../../../configs/init.config.php';
 
 $IM = new iModule();
+$IM->setLanguage('ko');
 
 $accounts = Request('accounts') ? explode(',',Request('accounts')) : array();
 $cache = Request('cache');
@@ -52,6 +53,8 @@ function GetSocailStreamFacebook($id) {
 	$content_type = explode(';',curl_getinfo($ch,CURLINFO_CONTENT_TYPE));
 	$content_type = array_shift($content_type);
 	
+	curl_close($ch);
+	
 	if ($http_code == 200) {
 		$result = json_decode($result);
 		$data = $result->data;
@@ -72,7 +75,7 @@ function GetSocailStreamFacebook($id) {
 			$item->time = strtotime($data[$i]->created_time);
 			$item->name = $data[$i]->from->name;
 			$item->account = 'https://www.facebook.com/'.$id;
-			$item->photo = 'http://graph.facebook.com/'.$data[$i]->from->id.'/picture?type=normal';
+			$item->photo = 'https://graph.facebook.com/'.$data[$i]->from->id.'/picture?type=normal';
 			$item->likes = $data[$i]->likes->summary->total_count;
 			$item->comments = $data[$i]->comments->summary->total_count;
 			
@@ -155,6 +158,7 @@ function GetSocailStreamTwitter($id) {
 	return $result;
 }
 
+$results = new stdClass();
 if ($me->checkCache() < time() - $cache) {
 	$rawLists = array();
 	for ($i=0, $loop=count($accounts);$i<$loop;$i++) {
@@ -180,9 +184,12 @@ if ($me->checkCache() < time() - $cache) {
 	}
 	
 	$me->storeCache(json_encode($lists,JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK));
+	$results->is_cache = false;
+	$results->cache_time = $me->checkCache();
 } else {
 	$data = $me->getCache();
 	$lists = json_decode($data);
+	$results->is_cache = true;
 }
 
 header('Content-type:text/json; charset=utf-8',true);
@@ -190,7 +197,6 @@ header('Cache-Control:no-store, no-cache, must-revalidate, max-age=0');
 header('Cache-Control:post-check=0, pre-check=0', false);
 header('Pragma:no-cache');
 
-$results = new stdClass();
 $results->success = true;
 $results->lists = $lists;
 exit(json_encode($results,JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRETTY_PRINT));

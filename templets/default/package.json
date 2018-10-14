@@ -1,13 +1,13 @@
 {
 	"title":{
-		"ko":"기본템플릿"
+		"ko":"소셜스트림위젯 기본템플릿"
 	},
 	"version":"3.0.0",
 	"author":{
 		"name":"Arzz",
 		"email":"arzz@arzz.com"
 	},
-	"homepage":"https://www.imodule.kr",
+	"homepage":"https://www.imodules.io",
 	"language":"ko",
 	"styles":[
 		"/styles/style.css"

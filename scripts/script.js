@@ -1,12 +1,14 @@
 /**
- * 이 파일은 소셜스트림 위젯의 일부입니다. (https://www.imodule.kr)
+ * 이 파일은 소셜스트림 위젯의 일부입니다. (https://www.imodules.io)
  * 
+ * 소셜스트림 위젯 화면 UI 이벤트를 처리한다.
+ *
  * @file /widgets/socialstream/index.php
  * @author Arzz (arzz@arzz.com)
- * @license GPLv3
- * @version 3.0.0.161001
+ * @license MIT License
+ * @version 3.0.0
+ * @modified 2018. 10. 15.
  */
-
 $(document).ready(function() {
 	(function() {
 		/**
