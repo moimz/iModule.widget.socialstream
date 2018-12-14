@@ -1,0 +1,45 @@
+/**
+ * 이 파일은 소셜스트림 위젯의 일부입니다. (https://www.imodules.io)
+ * 
+ * 소셜스트림 위젯 고정크기 템플릿 스타일시트
+ *
+ * @file /widgets/socialstream/templets/fixed/styles/style.css
+ * @author Arzz (arzz@arzz.com)
+ * @license MIT License
+ * @version 3.0.0
+ * @modified 2018. 12. 14.
+ */
+div[data-widget=socialstream][data-templet=fixed] {margin:-15px 0px 0px -15px;}
+div[data-widget=socialstream][data-templet=fixed] div[data-role=loading] {text-align:center; font-size:32px; height:150px; padding-top:15px; line-height:150px; color:#666;}
+div[data-widget=socialstream][data-templet=fixed] div.item {width:25%; margin:15px 0px 0px 0px; box-sizing:border-box; padding:0px 0px 0px 15px;}
+div[data-widget=socialstream][data-templet=fixed] div.item a {color:#2f8ec2; text-decoration:none;}
+div[data-widget=socialstream][data-templet=fixed] div.item > div.box {background:#fff; box-shadow:rgba(0,0,0,0.1) 1px 1px 2px 0px; overflow:hidden;}
+div[data-widget=socialstream][data-templet=fixed] div.item > div.box > a.image {border:0px; display:block; box-shadow:0px 1px 3px rgba(0,0,0,0.2); font-size:0; height:0; padding-bottom:60%; background:#fafafa url(../images/noimage.png) no-repeat 50% 50%;}
+div[data-widget=socialstream][data-templet=fixed] div.item > div.box > a.image > img {display:none;}
+div[data-widget=socialstream][data-templet=fixed] div.item > div.box > div.content {font-size:12px; line-height:1.6; padding:20px 15px; word-break:break-all; color:#333; height:250px; overflow-y:auto;}
+div[data-widget=socialstream][data-templet=fixed] div.item > div.box > div.account {position:relative; padding:10px; border-top:1px solid #f4f4f4; font-size:0;}
+div[data-widget=socialstream][data-templet=fixed] div.item > div.box > div.account:after {content:" "; clear:both; display:block;}
+div[data-widget=socialstream][data-templet=fixed] div.item > div.box > div.account > img.photo {width:36px; height:36px; display:inline-block; border-radius:3px; margin-right:5px; vertical-align:middle; border:1px solid #eee;}
+div[data-widget=socialstream][data-templet=fixed] div.item > div.box > div.account > i.fa {position:absolute; width:20px; height:20px; border-radius:50%; color:#fff; text-align:center; line-height:20px; top:10px; right:10px; font-size:12px;}
+div[data-widget=socialstream][data-templet=fixed] div.item > div.box > div.account > i.fa-facebook {background-color:#305a94;}
+div[data-widget=socialstream][data-templet=fixed] div.item > div.box > div.account > i.fa-twitter {background-color:#00a4ed;}
+div[data-widget=socialstream][data-templet=fixed] div.item > div.box > div.account > div.name {display:inline-block; width:calc(100% - 80px); height:36px; line-height:24px; font-weight:bold; text-overflow:ellipsis; white-space:nowrap; overflow:hidden; font-size:13px; vertical-align:middle; box-sizing:border-box;}
+div[data-widget=socialstream][data-templet=fixed] div.item > div.box > div.account > div.detail {font-size:12px; width:calc(100% - 80px); position:absolute; top:32px; left:53px;}
+div[data-widget=socialstream][data-templet=fixed] div.item > div.box > div.account > div.detail > a {color:#666;}
+div[data-widget=socialstream][data-templet=fixed] div.item > div.box > div.account > div.detail > a > span {display:inline-block; margin-right:5px;}
+div[data-widget=socialstream][data-templet=fixed] div.item > div.box > div.account > div.detail > a > span:after {content:", "}
+div[data-widget=socialstream][data-templet=fixed] div.item > div.box > div.account > div.detail > a > span:last-child:after {content:" ";}
+
+@media (max-width:767px) {
+	div[data-widget=socialstream][data-templet=fixed] {margin:0px; padding:5px 0px 0px 0px;}
+	div[data-widget=socialstream][data-templet=fixed] div.item {width:100%; margin:0px 0px 10px 0px; padding:0px;}
+	
+	div[data-widget=socialstream][data-templet=fixed] div.item > div.box > a.image {height:auto; padding-bottom:0;}
+	div[data-widget=socialstream][data-templet=fixed] div.item > div.box > a.image > img {display:block; width:100%;}
+	div[data-widget=socialstream][data-templet=fixed] div.item > div.box > div.content {height:auto; overflow-y:auto;}
+}
+
+@media (min-width:768px) and (max-width:991px) {
+	div[data-widget=socialstream][data-templet=fixed] {margin:-10px 0px 0px -10px;}
+	div[data-widget=socialstream][data-templet=fixed] div.item {width:50%; margin:0px 0px 10px 0px; padding:0px 0px 0px 10px;}
+}
