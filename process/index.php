@@ -41,18 +41,16 @@ function GetSocailStreamFacebook($id) {
 	global $facebook, $count;
 	
 	if ($facebook === false) return null;
-	
 	$fields = "id,message,picture,link,name,description,created_time,from,object_id,likes.summary(true),comments.summary(true),attachments";
 	
 	$ch = curl_init();
-	curl_setopt($ch,CURLOPT_URL,'https://graph.facebook.com/v2.8/'.$id.'/posts?access_token='.$facebook.'&fields='.$fields.'&limit='.$count);
+	curl_setopt($ch,CURLOPT_URL,'https://graph.facebook.com/v3.2/'.$id.'/feed?access_token='.$facebook.'&fields='.$fields.'&limit='.$count);
 	curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 	
 	$result = curl_exec($ch);
 	$http_code = curl_getinfo($ch,CURLINFO_HTTP_CODE);
 	$content_type = explode(';',curl_getinfo($ch,CURLINFO_CONTENT_TYPE));
 	$content_type = array_shift($content_type);
-	
 	curl_close($ch);
 	
 	if ($http_code == 200) {
@@ -118,7 +116,6 @@ function GetSocailStreamTwitter($id) {
 	
 	$auth = new TwitterOAuth($twitter[0],$twitter[1],$twitter[2],$twitter[3]);
 	$get = $auth->get('statuses/user_timeline',array('count'=>$count,'screen_name'=>$id));
-	
 	if ($get && isset($get->errors) == false) {
 		$data = json_decode($get);
 		
@@ -132,7 +129,7 @@ function GetSocailStreamTwitter($id) {
 			$lists[$i]->content = preg_replace('/\#([^[:space:]#]+)/','<a href="https://twitter.com/hashtag/\1">\0</a> ',$lists[$i]->content);
 			$lists[$i]->content = nl2br(trim($lists[$i]->content));
 			
-			$lists[$i]->link = 'https://twitter.com/arzzcom/status/'.$data[$i]->id;
+			$lists[$i]->link = 'https://twitter.com/'.$data[$i]->user->screen_name.'/status/'.$data[$i]->id;
 			$lists[$i]->time = strtotime($data[$i]->created_at);
 			$lists[$i]->name = $data[$i]->user->name;
 			$lists[$i]->account = 'https://www.twitter.com/'.$data[$i]->user->screen_name;
