@@ -6,7 +6,7 @@
  * @author Arzz (arzz@arzz.com)
  * @license MIT License
  * @version 3.0.0
- * @modified 2018. 10. 15.
+ * @modified 2020. 3. 13.
  */
 if (defined('__IM__') == false) exit;
 
@@ -21,6 +21,7 @@ $facebooks = $Widget->getValue('facebook') ? explode(',',$Widget->getValue('face
 $twitters = $Widget->getValue('twitter') ? explode(',',$Widget->getValue('twitter')) : array();
 
 $facebook_token = $Widget->getValue('facebook_app_id') && $Widget->getValue('facebook_app_secret') ? $Widget->getValue('facebook_app_id').'|'.$Widget->getValue('facebook_app_secret') : null;
+$facebook_token = $facebook_token == null ? $Widget->getValue('facebook_access_token') : $facebook_token;
 $twitter_token = $Widget->getValue('twitter_consumer_key') && $Widget->getValue('twitter_consumer_secret') && $Widget->getValue('twitter_access_token') && $Widget->getValue('twitter_access_token_secret') ? json_encode(array($Widget->getValue('twitter_consumer_key'),$Widget->getValue('twitter_consumer_secret'),$Widget->getValue('twitter_access_token'),$Widget->getValue('twitter_access_token_secret'))) : null;
 
 if (count($facebooks) > 0 && $facebook_token == null) return $Widget->getError('REQUIRED_FACEBOOK_TOKEN','facebook_app_id, facebook_app_secret');
