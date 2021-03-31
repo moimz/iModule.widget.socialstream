@@ -115,7 +115,7 @@ function GetSocailStreamTwitter($id) {
 	if ($twitter === false || is_array($twitter) === false) return null;
 	
 	$auth = new TwitterOAuth($twitter[0],$twitter[1],$twitter[2],$twitter[3]);
-	$get = $auth->get('statuses/user_timeline',array('count'=>$count,'screen_name'=>$id));
+	$get = $auth->get('statuses/user_timeline',array('count'=>$count,'screen_name'=>$id,'include_entities'=>'true','tweet_mode'=>'extended'));
 	if ($get && isset($get->errors) == false) {
 		$data = json_decode($get);
 		
@@ -124,7 +124,7 @@ function GetSocailStreamTwitter($id) {
 			$lists[$i] = new stdClass();
 			$lists[$i]->id = $data[$i]->id;
 			$lists[$i]->type = 'twitter';
-			$lists[$i]->content = isset($data[$i]->text) == true ? $data[$i]->text.' ' : '';
+			$lists[$i]->content = isset($data[$i]->full_text) == true ? $data[$i]->full_text.' ' : '';
 			$lists[$i]->content = AutoLink($lists[$i]->content);
 			$lists[$i]->content = preg_replace('/\#([^[:space:]#]+)/','<a href="https://twitter.com/hashtag/\1">\0</a> ',$lists[$i]->content);
 			$lists[$i]->content = nl2br(trim($lists[$i]->content));
