@@ -41,10 +41,10 @@ function GetSocailStreamFacebook($id) {
 	global $facebook, $count;
 	
 	if ($facebook === false) return null;
-	$fields = "id,message,picture,link,name,description,created_time,from,object_id,likes.summary(true),comments.summary(true),attachments";
+	$fields = "id,message,picture,created_time,from,likes.summary(true),comments.summary(true),attachments{unshimmed_url,media}";
 	
 	$ch = curl_init();
-	curl_setopt($ch,CURLOPT_URL,'https://graph.facebook.com/v3.2/'.$id.'/feed?access_token='.$facebook.'&fields='.$fields.'&limit='.$count);
+	curl_setopt($ch,CURLOPT_URL,'https://graph.facebook.com/v10.0/'.$id.'/feed?access_token='.$facebook.'&fields='.$fields.'&limit='.$count);
 	curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 	
 	$result = curl_exec($ch);
@@ -59,7 +59,7 @@ function GetSocailStreamFacebook($id) {
 		
 		$lists = array();
 		for ($i=0, $loop=count($data);$i<$loop;$i++) {
-			if (isset($data[$i]->link) == false) continue;
+			if (isset($data[$i]->attachments) == false || isset($data[$i]->attachments->data) == false || isset($data[$i]->message) == false) continue;
 			
 			$item = new stdClass();
 			$item->id = $data[$i]->id;
@@ -69,7 +69,7 @@ function GetSocailStreamFacebook($id) {
 			$item->content = preg_replace('/\#([^[:space:]#]+)/','<a href="https://www.facebook.com/hashtag/\1">\0</a> ',$item->content);
 			$item->content = nl2br(trim($item->content));
 			
-			$item->link = $data[$i]->link;
+			$item->link = $data[$i]->attachments->data[0]->unshimmed_url;
 			$item->time = strtotime($data[$i]->created_time);
 			$item->name = $data[$i]->from->name;
 			$item->account = 'https://www.facebook.com/'.$id;
